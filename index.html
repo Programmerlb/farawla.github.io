@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Fresh Juice Market</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            width: 100%;
+            background-color: pink;
+            padding: 1rem 0;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .logo-container {
+            position: absolute;
+            top: 0.5rem;
+            left: 1rem; /* Adjust this value to position the logo as needed */
+        }
+
+        .logo {
+            width: 50px; /* Adjust size of logo */
+            height: auto;
+        }
+
+        h1 {
+            color: white;
+            font-size: 2rem;
+            font-weight: 600;
+            margin-left: 60px; /* This ensures that the title doesn't overlap with the logo */
+        }
+
+        .cart {
+            display: flex;
+            align-items: center;
+            position: relative;
+        }
+
+        .cart-button {
+            background-color: transparent;
+            border: none;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .cart-button:hover {
+            transform: scale(1.2);
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background-color: #e01e1e;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 50%;
+            font-size: 0.8rem;
+        }
+
+        nav {
+            width: 100%;
+            background-color: pink;
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .nav-link {
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: palevioletred;
+        }
+
+        .hero-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 2rem;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+           
+        }
+
+        /* New Juice Menu Section */
+        .menu-section {
+            width: 90%;
+            margin: 3rem auto;
+        }
+
+        .menu-category {
+            background-color: #f9f9f9;
+            padding: 2rem;
+            margin-bottom: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-category h2 {
+            font-size: 2rem;
+            color: #333;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .menu-items {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .menu-item {
+            background-color: white;
+            width: 48%;
+            margin-bottom: 1rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+            padding: 1rem;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .menu-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 10px;
+            filter: brightness(85%);
+            transition: transform 0.3s ease;
+        }
+
+        .menu-item img:hover {
+            transform: scale(1.05);
+        }
+
+        .menu-item h3 {
+            font-size: 1.5rem;
+            color: #333;
+            margin-top: 1rem;
+        }
+
+        .menu-item p {
+            font-size: 1.25rem;
+            color: pink;
+            margin: 0.5rem 0;
+        }
+
+        .menu-item span {
+            font-size: 1.25rem;
+            color: #333;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 3rem;
+            background-color: pink;
+            color: white;
+            padding: 2rem 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-section {
+            background-color: #fff;
+            width: 100%;
+            padding: 5rem 0;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-title {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+
+        .contact-details {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 2rem;
+        }
+
+        .contact-phone {
+            font-size: 2rem;
+            font-weight: bold;
+            color: black;
+            margin: 1rem 0;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-phone:hover {
+            transform: scale(1.1);
+            color: palevioletred;
+        }
+
+        .contact-button {
+            padding: 1rem 3rem;
+            background-color: pink;
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .contact-button:hover {
+            background-color: #d11c1c;
+            transform: translateY(-5px);
+        }
+         .hero-image {
+            width: 100%;
+            height: 80vh;
+            background: url('banner2.jpg') no-repeat center center/cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+\.logo-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 40px;
+    max-height: 40px;
+    object-fit: contain;
+}
+
+
+	        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .navbar {
+            background-color: pink;
+        }
+
+        .navbar-brand img {
+            width: 50px;
+            height: auto;
+        }
+
+        .nav-link {
+            color: white !important;
+            font-size: 1.2rem;
+        }
+
+        .nav-link:hover {
+            color: palevioletred !important;
+        }
+    </style>
+</head>
+<body>
+ <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container-fluid">
+            <div class="d-flex align-items-center">
+                <a class="navbar-brand" href="#">
+                    <img src="home2.png" alt="Logo">
+                </a>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#menu">Menu</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Image -->
+    <section class="hero-image">
+    </section>
+
+    <!-- Menu Section -->
+    <section id="menu" class="menu-section">
+        <div class="menu-category">
+            <h2>🍹 Classic Juices</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="orange.jfif" alt="Orange Juice">
+                    <h3>Orange Juice</h3>
+                    <p>$5</p>
+                </div>
+                <div class="menu-item">
+                    <img src="apple.jfif" alt="Apple Juice">
+                    <h3>Apple Juice</h3>
+                    <p>$4</p>
+                </div>
+                <div class="menu-item">
+                    <img src="mango.jfif" alt="Mango Juice">
+                    <h3>Mango Juice</h3>
+                    <p>$6</p>
+                </div>
+                <div class="menu-item">
+                    <img src="anans.jfif" alt="Pineapple Juice">
+                    <h3>Pineapple Juice</h3>
+                    <p>$7</p>
+                </div>
+                <div class="menu-item">
+                    <img src="carot.jfif" alt="Carrot Juice">
+                    <h3>Carrot Juice</h3>
+                    <p>$3.5</p>
+                </div>
+                <div class="menu-item">
+                    <img src="romen.jfif" alt="Pomegranate Juice">
+                    <h3>Pomegranate Juice</h3>
+                    <p>$6.5</p>
+                </div>
+                <div class="menu-item">
+                    <img src="watermelon.jfif" alt="Watermelon Juice">
+                    <h3>Watermelon Juice</h3>
+                    <p>$5</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-category">
+            <h2>🌟 Special Mixes</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="lemon.jfif" alt="Lemon & Mint">
+                    <h3>Lemon & Mint</h3>
+                    <p>$4.5</p>
+                </div>
+                <div class="menu-item">
+                    <img src="banana.jfif" alt="Banana & Milk">
+                    <h3>Banana & Milk</h3>
+                    <p>$6</p>
+                </div>
+                <div class="menu-item">
+                    <img src="stroberry.jfif" alt="Strawberry & Banana">
+                    <h3>Strawberry & Banana</h3>
+                    <p>$6.5</p>
+                </div>
+                <div class="menu-item">
+                    <img src="tropical.jfif" alt="Tropical Mix">
+                    <h3>Tropical Mix</h3>
+                    <p>$7</p>
+                </div>
+                <div class="menu-item">
+                    <img src="avocado.jfif" alt="Avocado Delight">
+                    <h3>Avocado Delight</h3>
+                    <p>$8.5</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-category">
+            <h2>🌴 Exotic Blends</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="acia.jfif" alt="Acai Power Mix">
+                    <h3>Acai Power Mix</h3>
+                    <p>$9</p>
+                </div>
+                <div class="menu-item">
+                    <img src="coconut.jfif" alt="Coconut Paradise">
+                    <h3>Coconut Paradise</h3>
+                    <p>$7.5</p>
+                </div>
+                <div class="menu-item">
+                    <img src="kiwi.jfif" alt="Kiwi & Apple Refresh">
+                    <h3>Kiwi & Apple Refresh</h3>
+                    <p>$7</p>
+                </div>
+                <div class="menu-item">
+                    <img src="booster.jfif" alt="Citrus Booster">
+                    <h3>Citrus Booster</h3>
+                    <p>$6.5</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-category">
+            <h2>🍫 Delicious Crepes</h2>
+            <div class="menu-items">
+                <div class="menu-item">
+                    <img src="nutela.jfif" alt="Nutella Crepe">
+                    <h3>Nutella Crepe</h3>
+                    <p>$4</p>
+                </div>
+                <div class="menu-item">
+                    <img src="lotus.jfif" alt="Lotus Crepe">
+                    <h3>Lotus Crepe</h3>
+                    <p>$5</p>
+                </div>
+                <div class="menu-item">
+                    <img src="pestacho.jfif" alt="Pistachio Crepe">
+                    <h3>Pistachio Crepe</h3>
+                    <p>$5</p>
+                </div>
+                <div class="menu-item">
+                    <img src="buno.jfif" alt="Kinder Bueno Crepe">
+                    <h3>Kinder Bueno Crepe</h3>
+                    <p>$5</p>
+                </div>
+                <div class="menu-item">
+                    <img src="galaxy.jfif" alt="Kinder Bueno Crepe">
+                    <h3>Galaxy Crepe</h3>
+                    <p>$5</p>
+                </div>
+            </div>
+        </div>
+            
+    </section>
+
+     <!-- Contact Us Section -->
+     <section class="menu-category">
+        <h2 class="contact-title">Contact Us</h2>
+        <p class="contact-details">We would love to hear from you! For any inquiries or feedback, please feel free to call us.</p>
+        <a href="tel:+96176934787" class="contact-phone">📞 Call Us: 76 934 787 </a>
+        <br>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Farawla Juice Market. All Rights Reserved.</p>
+        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        <p>Kafaroumman main road</p>
+    </footer>
+
+    <script>
+        let cartCount = 0;
+
+        function addToCart(name, price) {
+            cartCount++;
+            document.querySelector('.cart-count').textContent = cartCount;
+            alert(`${name} added to your cart for $${price}`);
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
